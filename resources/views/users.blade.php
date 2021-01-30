@@ -1,7 +1,7 @@
 <h1>Login</h1>
 
 <form action="users" method="POST">
-@csrf
+@csrf 
 User Name:<input type="text" name="username" placeholder="enter username"/><br>
 <span>@error('username'){{$message}}@enderror</span><br>
 Password:<input type="text" name="password"placeholder="enter password"/><br>

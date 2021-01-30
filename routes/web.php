@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\patientcontroller;
 use App\Http\Controllers\userscontroller;
 use App\Http\Controllers\homecontroller;
+use App\Http\Controllers\fundscontroller;
+use App\Http\Controllers\registercontroller;
+use App\Http\Controllers\paycontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +35,23 @@ Route::get('pat',function(){
 Route::get('pay',function(){
     return view('/admin/pay');
 });
-Route::get('user1',[patientcontroller::class,'loadpatient']);
+Route::get('patient',[patientcontroller::class,'loadpatient']);
 Route::post('users',[userscontroller::class,'getdata']);
 Route::view('login','users');
 Route::view('homepage','home');
 Route::get('home',[homecontroller::class,'loadview']);
+
+// working with the funds page
+Route::get('funds',[fundscontroller::class,'getfunds']);
+Route::post('funds',[fundscontroller::class,'getfunds']);
+
+//working with the register health officer page
+Route::get('register',[registercontroller::class,'barry']);
+Route::post('register',[registercontroller::class,'barry']);
+
+
+Route::get('pay',[paycontroller::class,'pay']);
+//routing the layouts page
+Route::get('layout',function(){
+    return view('layouts');
+});

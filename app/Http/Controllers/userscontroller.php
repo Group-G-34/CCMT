@@ -12,6 +12,8 @@ class userscontroller extends Controller
         'username' => 'required | max:10',
         'password' => 'required | min:5'
     ]);
-       return view('homepage');
+    session()->put('user',$req['user']);  
+    return view('homepage'); 
   }
+ 
 }
