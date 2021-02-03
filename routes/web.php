@@ -7,6 +7,7 @@ use App\Http\Controllers\homecontroller;
 use App\Http\Controllers\fundscontroller;
 use App\Http\Controllers\registercontroller;
 use App\Http\Controllers\paycontroller;
+use App\Http\Controllers\profilecontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,9 @@ use App\Http\Controllers\paycontroller;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//working with the views
 Route::get('/', function () {
-    return view('users');
+    return view('homepage');
 });
 
 Route::get('funds',function(){
@@ -35,11 +36,59 @@ Route::get('pat',function(){
 Route::get('pay',function(){
     return view('/admin/pay');
 });
-Route::get('patient',[patientcontroller::class,'loadpatient']);
+//layout1
+Route::get('layout1',function(){
+    return view('layout1');
+});
+//routing the admin view
+Route::get('profile',function(){
+    return view('profile');
+});
+
+Route::get('profile',[profilecontroller::class,'getad']);
+Route::get('users',[profilecontroller::class,'getad']);
+//...admin view...//
+
+//working with the login page 
+Route::get('login',function(){
+    return view('users');
+});
+
+// routing for the users.blade.php
 Route::post('users',[userscontroller::class,'getdata']);
-Route::view('login','users');
+Route::get('users',[userscontroller::class,'getdata']);
+//..users.blade.php
+
+Route::get('users',function(){
+    if(session()->has('user'))
+    {
+        return redirect('profile');
+    }
+    return view('users');
+});
+
+
+//.. working with the login page.....//
+
+//logout page
+/*Route::get('/logout',function(){
+    if(session()->has('user'))
+    {
+        session()->pull('users');
+    }
+    return redirect('users');
+});*/
+//..logout page..//
+
+
+Route::get('patient',[patientcontroller::class,'loadpatient']);
+
+
+
+//working with the home page
 Route::view('homepage','home');
 Route::get('home',[homecontroller::class,'loadview']);
+
 
 // working with the funds page
 Route::get('funds',[fundscontroller::class,'getfunds']);

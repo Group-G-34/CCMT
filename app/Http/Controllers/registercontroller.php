@@ -11,6 +11,16 @@ class registercontroller extends Controller
     $req->session()->flash('fname',$data);
      return view('/admin/register');
  }
+ protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'fname' => 'required|max:255',
+            'lname' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'NIN' => 'required|min:14|max:14|confirmed',
+            'contact'=>'required|min:11|max:11'
+        ]);
  
 }
 
+}

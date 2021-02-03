@@ -1,4 +1,4 @@
-@extends('layouts')
+@extends('layout1')
 @section('content')
 <html>
 <head>
